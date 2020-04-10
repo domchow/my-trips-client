@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import Trips from './components/myTrips';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+
+  state = {
+    trips: []
+  }
+
+  componentDidMount() {
+    const url = "http://127.0.0.1:8080/trips";
+
+
+    fetch(url, {
+      method: 'GET',
+      headers: {'Access-Control-Allow-Origin': 'http://localhost:3000'},
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log('Success:', data);
+      this.setState({ trips: data })
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+  }
+
+  render () {
+    return (
+      <Trips trips={this.state.trips} />
+    );
+  }
 }
 
 export default App;
