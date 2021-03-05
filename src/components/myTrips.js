@@ -1,23 +1,18 @@
 import React from 'react'
 
 import { ListWrapper, Ul } from './ListWrapper.style'
+import Card from './Card'
 
 const Trips = ({ trips }) => {
     return (
-        <div>
-        <center><h1 class="text-3xl text-left">Trips list</h1></center>
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <ListWrapper>
-            <Ul>
-            {trips.map((trip) => (
-                <div class="px-4 py-4 sm:px-6">
-                    <h5 class="card-title">{trip.city}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{trip.date}</h6>
-                </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            {trips.map(trip => (
+                <li class="col-span-1 flex flex-col text-center bg-white rounded-lg shadow-sm divide-y divide-gray-200">
+                    <Card city={trip.city} date={trip.date} />
+                </li>
             ))}
-            </Ul>
-        </ListWrapper>
-        </div>
+            </ul>
         </div>
     )
 };
