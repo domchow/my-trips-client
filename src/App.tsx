@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react'
+import {
+	Switch,
+	Route,
+	Link
+  } from "react-router-dom";
 
 import Trips from './components/myTrips'
 import Layout from './components/layout/Layout'
+import SignIn from './pages/sign-in/SignIn'
 
 const url = 'http://127.0.0.1:8080/trips'
 
@@ -30,7 +36,16 @@ const App: React.FC = () => {
 		fetchData()
 	}, [setTrips])
 
-	return <Layout><Trips trips={localTrips} /></Layout>
+	return (
+		<Switch>
+			<Route path="/my-trips">
+				<Layout><Trips trips={localTrips} /></Layout>
+			</Route>
+			<Route path="/sign-in">
+				<SignIn />
+			</Route>
+		</Switch>
+	) 
 }
 
 export default App
