@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import Trips from './components/myTrips'
+import Layout from './components/layout/Layout'
 
 const url = 'http://127.0.0.1:8080/trips'
 
@@ -29,7 +30,7 @@ const App: React.FC = () => {
 		fetchData()
 	}, [setTrips])
 
-	return <Trips trips={localTrips} />
+	return <Layout><Trips trips={localTrips} /></Layout>
 }
 
 export default App
